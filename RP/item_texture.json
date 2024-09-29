@@ -27,7 +27,10 @@
       "textures" : "textures\/craftycraft\/items\/cc_texture_sword"
     },
     "cc:sword_of_panic" : {
-      "textures" : "textures\/craftycraft\/items\/cc_sword_of_panic"
+      "textures" :{
+                "default": "textures\/craftycraft\/items\/cc_sword_of_panic",
+                "enchanted": "textures/misc/enchanted_item_glint"
+            } 
     }
   }
 }
