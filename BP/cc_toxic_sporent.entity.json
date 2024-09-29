@@ -11,7 +11,7 @@
         "default" : "geometry.createdtoxic_sporent"
       },
       "animations" : {
-        "walk" : "animation.quadruped.walk",
+        "walk" : "animation.sporent.move",
         "look_at_target" : "animation.common.look_at_target",
         "baby_transform" : "animation.cow.baby_transform",
         "setup" : "animation.cow.setup"
