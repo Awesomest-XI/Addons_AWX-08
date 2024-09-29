@@ -1,1 +1,2 @@
-#ominous master resourse pack
+# Ominous Master 
+## Resourse Pack/RP
