@@ -1,0 +1,21 @@
+{
+  "resource_pack_name" : "CraftyCraft[Resource]",
+  "texture_name" : "atlas.items",
+  "texture_data" : {
+    "cc:burning_shard" : {
+      "textures" : "textures\/craftycraft\/items\/cc_burning_shard"
+    },
+    "cc:texture_sword" : {
+      "textures" : {
+        "default" : "textures\/craftycraft\/items\/cc_texture_sword",
+        "enchanted" : "textures\/misc\/enchanted_item_glint"
+      }
+    },
+    "cc:trimmed_netherite_sword" : {
+      "textures" : "textures\/craftycraft\/items\/cc_trimmed_netherite_sword"
+    },
+    "cc:ominous_texture" : {
+      "textures" : "textures\/craftycraft\/items\/cc_ominous_texture"
+    }
+  }
+}
