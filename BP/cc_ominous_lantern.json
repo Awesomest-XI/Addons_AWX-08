@@ -3,17 +3,17 @@
     "components" : {
       "minecraft:friction" : 0.60000002384185791,
       "minecraft:block_light_absorption" : 0,
-      "minecraft:block_light_emission" : 0.41999998688697815,
+      "minecraft:block_light_emission" : 5,
       "minecraft:entity_collision" : {
         "origin" : [
-          -8,
+          -3.50,
           0,
-          -8
+          -3.50
         ],
         "size" : [
-          16,
-          11.300000190734863,
-          16
+          7,
+         12,
+          7
         ]
       },
       "minecraft:creative_category" : {
@@ -21,14 +21,14 @@
       },
       "minecraft:pick_collision" : {
         "origin" : [
-          -8,
+          -3.50,
           0,
-          -8
+          -3.50
         ],
         "size" : [
-          16,
-          11.300000190734863,
-          16
+          7,
+         12,
+          7
         ]
       },
       "minecraft:loot" : "loot_tables\/blocks\/cc_ominous_lantern.json",
