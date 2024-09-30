@@ -17,7 +17,7 @@
 				"rotation": false
 			},
 			"minecraft:emitter_rate_instant": {
-				"num_particles": 100
+				"num_particles": 67
 			},
 			"minecraft:emitter_lifetime_once": {
 				"active_time": 1
