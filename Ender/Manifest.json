@@ -1,0 +1,27 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "End Gate behavior pack (v1.0)",
+    "name": "End Gate BP",
+    "uuid": "11111111-2222-3333-4444-555555555555",
+    "version": [1,0,0],
+    "min_engine_version": [1,21,0]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "22222222-3333-4444-5555-666666666666",
+      "version": [1,0,0]
+    },
+    {
+      "type": "script",
+      "uuid": "33333333-4444-5555-6666-777777777777",
+      "version": [1,0,0],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {"uuid": "8ec9d75c-22a2-4715-a106-9a4e9d07cecc", "version": [2,0,0]},      // @minecraft/server API
+    {"uuid": "511dfcb7-ecc7-4b75-8e14-32ad6f726a28", "version": [1,2,0]}       // @minecraft/server-ui API
+  ]
+}
