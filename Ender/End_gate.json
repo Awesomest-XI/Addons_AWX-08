@@ -1,0 +1,16 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:block": {
+    "description": {
+      "identifier": "cc:end_gate"
+    },
+    "components": {
+      "minecraft:custom_components": [ "cc:end_gate" ],
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 2.0 },
+      "minecraft:explosion_resistance": 10,
+      "minecraft:flammable": false,
+      "minecraft:geometry": "geometry.full_block",
+      "minecraft:light_emission": 0
+    }
+  }
+}
