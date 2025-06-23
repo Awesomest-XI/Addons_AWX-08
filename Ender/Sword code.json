@@ -1,0 +1,24 @@
+{
+  "format_version": "1.20.8",
+  "minecraft:item": {
+    "description": {
+      "identifier": "custom:tele_sword",
+      "category": "Equipment"
+    },
+    "components": {
+      "minecraft:icon": {
+        "texture": "textures/items/diamond_sword"
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 1561,
+        "damage_on_break": 0
+      },
+      "minecraft:use_animation": "spear",
+      "minecraft:use_duration": 20,
+      "minecraft:custom_components": [
+        "custom:tele_sword"
+      ]
+    }
+  }
+}
