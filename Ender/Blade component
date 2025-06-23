@@ -1,0 +1,54 @@
+import { world } from "@minecraft/server";
+
+world.beforeEvents.worldInitialize.subscribe(initEvent => {
+  const registry = initEvent.itemComponentRegistry;
+
+  registry.registerCustomComponent("custom:tele_sword", {
+    /**
+     * Called when the player finishes using the item (right-click).
+     * Teleports them behind the nearest other player, gives Strength II,
+     * and manually inflicts 1 point of durability damage.
+     */
+    onCompleteUse(event, params) {
+      const user = event.source;                  // the Player who used it
+      const all = world.getPlayers();             // get all players
+      // find nearest *other* player:
+      const nearest = all
+        .filter(p => p.name !== user.name)
+        .sort((a,b) => {
+          const da = a.location.distance(user.location);
+          const db = b.location.distance(user.location);
+          return da - db;
+        })[0];
+      if (!nearest) return;
+
+      // compute point 1 block behind them
+      const yawRad = (nearest.rotation.yaw + 180) * (Math.PI/180);
+      const behindX = nearest.location.x + Math.sin(yawRad);
+      const behindY = nearest.location.y;
+      const behindZ = nearest.location.z + Math.cos(yawRad);
+
+      // teleport, give strength, and damage durability
+      world
+        .getDimension("overworld")
+        .runCommand(`tp "${user.name}" ${behindX} ${behindY} ${behindZ}`);
+      world
+        .getDimension("overworld")
+        .runCommand(`effect "${user.name}" strength 2 5 true`);
+      // manually wear down the sword by 1
+      const stack = event.itemStack;
+      stack.setDamage(stack.getDamage() + 1);
+    },
+
+    /**
+     * Called when this sword hits an entity.
+     * Applies Weakness II to the attacker.
+     */
+    onHitEntity(event, params) {
+      const user = event.source;
+      world
+        .getDimension("overworld")
+        .runCommand(`effect "${user.name}" weakness 2 5 true`);
+    }
+  });
+});
