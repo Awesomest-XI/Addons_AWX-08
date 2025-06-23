@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "myaddon:end_gate"
+    },
+    "tags": [ "crafting_table" ],
+    "ingredients": [
+      { "item": "minecraft:end_stone" },
+      { "item": "minecraft:purpur_block" },
+      { "item": "minecraft:echo_shard" },
+      { "item": "minecraft:eye_of_ender" }
+    ],
+    "result": {
+      "item": "myaddon:end_gate",
+      "count": 1
+    }
+  }
+}
