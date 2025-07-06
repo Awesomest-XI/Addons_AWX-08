@@ -1,0 +1,78 @@
+{
+  "format_version": "1.21.8",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "my:skyshifter",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["flying", "mob"]
+      },
+      "minecraft:health": {
+        "value": 20,
+        "max": 20
+      },
+      "minecraft:movement": {
+        "value": 0.25
+      },
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 1.8
+      },
+      "minecraft:bounding_box": {
+        "width": 0.6,
+        "height": 1.8
+      },
+      "minecraft:render": {
+        "geometry": "geometry.humanoid",
+        "materials": [{"*": "entity_alphatest"}],
+        "textures": {"default": "textures/entity/skyshifter"}
+      },
+      "minecraft:on_player_interacted": {
+        "event": "on_use_rod",
+        "target": "self"
+      }
+    },
+    "events": {
+      "on_use_rod": {
+        "sequence": [
+          {
+            "filters": [
+              {
+                "has_item": {
+                  "item": "minecraft:blaze_rod",
+                  "location": "hand"
+                }
+              }
+            ],
+            "run_command": {
+              "command": "summon blaze ~ ~ ~"
+            },
+            "remove_entity": {
+              "target": "self"
+            }
+          },
+          {
+            "filters": [
+              {
+                "has_item": {
+                  "item": "my:breeze_rod",
+                  "location": "hand"
+                }
+              }
+            ],
+            "run_command": {
+              "command": "summon my:breeze ~ ~ ~"
+            },
+            "remove_entity": {
+              "target": "self"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
