@@ -1,0 +1,58 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:block": {
+    "description": {
+      "identifier": "bridge:copper_workbench",
+      "states": {
+        "minecraft:block_face": ["north", "south", "east", "west", "up", "down"],
+        "minecraft:vertical_half": ["top", "bottom"]
+      },
+      "traits": {
+        "minecraft:placement_position": {
+          "enabled_states": [
+            "minecraft:block_face",
+            "minecraft:vertical_half"
+          ]
+        },
+        "minecraft:placement_direction": {
+          "enabled_states": ["minecraft:block_face"]
+        }
+      }
+    },
+    "components": {
+      "minecraft:crafting_table": {
+        "table_name": "Copper Workbench",
+        "crafting_tags": ["crafting_table", "awx:workbench"]
+      },
+      "minecraft:friction": 0.4,
+      "minecraft:light_emission": 2,
+      "minecraft:map_color": "#c16746",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "bridge_copper_workbench",
+          "render_method": "alpha_test"
+        }
+      }
+    },
+    "permutations": [
+      {
+        "condition": "query.block_state('minecraft:vertical_half') == 'top' && (query.block_state('minecraft:block_face') == 'east' || query.block_state('minecraft:block_face') == 'west' || query.block_state('minecraft:block_face') == 'north' || query.block_state('minecraft:block_face') == 'south')",
+        "components": {
+          "minecraft:geometry": "geometry.floating_copperbench"
+        }
+      },
+      {
+        "condition": "query.block_state('minecraft:block_face') == 'down'",
+        "components": {
+          "minecraft:geometry": "geometry.standing_copperbench"
+        }
+      },
+      {
+        "condition": "query.block_state('minecraft:vertical_half') == 'bottom'",
+        "components": {
+          "minecraft:geometry": "geometry.grounded_copperbench"
+        }
+      }
+    ]
+  }
+}
