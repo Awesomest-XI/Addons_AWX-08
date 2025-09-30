@@ -1,0 +1,233 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "minecraft:copper_golem",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "properties": {
+        "minecraft:is_becoming_statue": {
+          "type": "bool",
+          "default": false
+        },
+        "minecraft:is_waxed": {
+          "type": "bool",
+          "default": false
+        },
+        "minecraft:oxidation_level": {
+          "type": "enum",
+          "values": [
+            "unoxidized",
+            "exposed",
+            "weathered",
+            "oxidized"
+          ],
+          "default": "unoxidized",
+          "client_sync": true
+        },
+        "minecraft:chest_interaction": {
+          "type": "enum",
+          "values": [
+            "none",
+            "take",
+            "take_fail",
+            "put",
+            "put_fail"
+          ],
+          "default": "none",
+          "client_sync": true
+        },
+        "minecraft:has_flower": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:is_hidden_when_invisible": {},
+      "minecraft:type_family": {
+        "family": [
+          "copper_golem",
+          "mob"
+        ]
+      },
+      "minecraft:nameable": {},
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 0.98
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/copper_golem.json"
+      },
+      "minecraft:equipment": {
+        "slot_drop_chance": [
+          {
+            "slot": "slot.weapon.mainhand",
+            "drop_chance": 1.0
+          }
+        ]
+      },
+      "minecraft:health": {
+        "value": 12,
+        "max": 12
+      },
+      "minecraft:movement": {
+        "value": 0.2
+      },
+      "minecraft:navigation.walk": {
+        "avoid_water": true,
+        "avoid_damage_blocks": true,
+        "can_pass_doors": true,
+        "can_open_doors": true
+      },
+      "minecraft:annotation.open_door": {},
+      "minecraft:movement.basic": {},
+      "minecraft:jump.static": {},
+      "minecraft:can_climb": {},
+      "minecraft:attack": {
+        "damage": 2
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": {
+              "test": "in_lava",
+              "subject": "self",
+              "operator": "==",
+              "value": true
+            },
+            "cause": "lava",
+            "damage_per_tick": 4
+          }
+        ]
+      },
+      "minecraft:leashable": {
+      },
+      "minecraft:leashable_to": {
+      },
+      "minecraft:balloonable": {},
+      "minecraft:behavior.panic": {
+        "priority": 2,
+        "speed_multiplier": 1.5
+      },
+      "minecraft:behavior.transport_items": {
+        "priority": 3,
+        "source_container_types": [
+          "minecraft:copper_chest",
+          "minecraft:exposed_copper_chest",
+          "minecraft:oxidized_copper_chest",
+          "minecraft:waxed_copper_chest",
+          "minecraft:waxed_exposed_copper_chest",
+          "minecraft:waxed_oxidized_copper_chest",
+          "minecraft:waxed_weathered_copper_chest",
+          "minecraft:weathered_copper_chest"
+        ],
+        "destination_container_types": [ "minecraft:chest", "minecraft:trapped_chest" ],
+        "max_stack_size": 16,
+        "interaction_time": 3.0,
+        "allow_simultaneous_interaction": false,
+        "search_strategy": "nearest",
+        "search_distance": [ 32, 8 ],
+        "max_visited_containers": 10,
+        "initial_cooldown": 3,
+        "idle_cooldown": 7,
+        "place_strategy": "with_matching_or_empty"
+      },
+      "minecraft:behavior.take_flower": {
+        "priority": 4,
+        "filters": {
+          "all_of": [
+            {
+              "test": "is_daytime",
+              "value": true
+            },
+            {
+              "test": "bool_property",
+              "domain": "minecraft:has_flower",
+              "value": false
+            }
+          ]
+        },
+        "on_take_flower": {
+          "event": "minecraft:on_take_flower"
+        }
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 5,
+        "xz_dist": 3
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 6,
+        "look_distance": 6.0,
+        "probability": 0.02
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 7
+      },
+      "minecraft:persistent": {},
+      "minecraft:physics": {},
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:conditional_bandwidth_optimization": {},
+     
+          // Drop item
+          {
+            "on_interact": {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "all_slots_empty",
+                    "domain": "hand",
+                    "operator": "not"
+                  },
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  {
+                    "test": "all_slots_empty",
+                    "domain": "hand",
+                    "subject": "other"
+                  }
+                ]
+              }
+            },
+            "drop_item_slot": "slot.weapon.mainhand",
+            "swing": true,
+            "interact_text": "action.interact.drop_item"
+          }
+        
+    },
+    "events": {
+      "minecraft:transport_items.start_take_succeed": {
+        "set_property": {
+          "minecraft:chest_interaction": "take"
+        }
+      },
+      "minecraft:transport_items.start_take_fail": {
+        "set_property": {
+          "minecraft:chest_interaction": "take_fail"
+        }
+      },
+      "minecraft:transport_items.start_place_succeed": {
+        "set_property": {
+          "minecraft:chest_interaction": "put"
+        }
+      },
+      "minecraft:transport_items.start_place_fail": {
+        "set_property": {
+          "minecraft:chest_interaction": "put_fail"
+        }
+      },
+      "minecraft:transport_items.stop_interaction": {
+        "set_property": {
+          "minecraft:chest_interaction": "none"
+        }
+      }
+    }
+  }
+}
